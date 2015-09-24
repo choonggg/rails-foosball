@@ -20,10 +20,6 @@ group :development, :test do
   gem 'better_errors', '~> 2.1.1'
   gem 'web-console', '~> 2.0'
   gem 'spring'
-end
-
-
-group :test do
-  gem 'factory_girl_rails', '~> 4.5.0'
   gem 'rspec-rails', '~> 3.3.3'
+  gem 'factory_girl_rails', '~> 4.5.0'
 end
