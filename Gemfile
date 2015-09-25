@@ -8,8 +8,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'haml'
-gem 'haml_rails'
+gem "haml-rails", "~> 0.9"
+gem 'simple_form', '~> 3.2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
