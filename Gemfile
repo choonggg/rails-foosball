@@ -15,6 +15,7 @@ gem 'simple_form', '~> 3.2.0'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'shoulda-matchers'
   gem 'sqlite3'
   gem 'byebug'
   gem 'better_errors', '~> 2.1.1'
@@ -22,4 +23,8 @@ group :development, :test do
   gem 'spring'
   gem 'rspec-rails', '~> 3.3.3'
   gem 'factory_girl_rails', '~> 4.5.0'
+end
+
+group :test do
+  gem 'shoulda-matchers', require: false
 end

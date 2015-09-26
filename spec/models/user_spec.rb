@@ -1,14 +1,23 @@
 require 'rails_helper'
 
+describe User, type: :model do
+
+  subject(:user) { create(:user) }
+
+  it "should have a valid factory do" do
+    subject.should be_valid
+  end
+
+end
+
+describe User, 'validation' do
+  it { should validate_presence_of(:first_name) }
+  it { should validate_presence_of(:last_name) }
+end
+
 describe User, '#display_name' do
-  it 'is invalid without first_name' do
-    Factory.build(:user, first_name: nil).should_not be_valid
-  end
-  it 'is invalid without last_name' do
-    Factory.build(:user, last_name: nil).should_not be_valid
-  end
   it 'should return full name' do
-    user = create(:user, first_name: 'Josh', last_name: 'Tan')
-    expect(user.display_name) == 'Josh Tan'
+    user = create(:user, first_name: 'John', last_name: 'Doe')
+    expect(user.display_name).to eq 'John Doe'
   end
 end
