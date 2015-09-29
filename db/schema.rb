@@ -14,13 +14,21 @@
 ActiveRecord::Schema.define(version: 20150929124002) do
 
   create_table "matches", force: :cascade do |t|
-    t.integer  "winner"
-    t.integer  "home_team"
-    t.integer  "away_team"
-    t.boolean  "match_over", default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "winner_id"
+    t.integer  "home_team_id"
+    t.integer  "away_team_id"
+    t.boolean  "match_over",   default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
+
+  create_table "matches_teams", id: false, force: :cascade do |t|
+    t.integer "match_id"
+    t.integer "team_id"
+  end
+
+  add_index "matches_teams", ["match_id"], name: "index_matches_teams_on_match_id"
+  add_index "matches_teams", ["team_id"], name: "index_matches_teams_on_team_id"
 
   create_table "teams", force: :cascade do |t|
     t.string   "team_name"

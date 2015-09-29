@@ -1,0 +1,9 @@
+%h1 Matches#new
+%p Find me in app/views/matches/new.html.haml
+
+=simple_form_for @match do |f|
+  =f.simple_fields_for :home_team do |hteam|
+    =hteam.input :team_name
+  =f.simple_fields_for :away_team do |ateam|
+    =ateam.input :team_name
+  =f.submit

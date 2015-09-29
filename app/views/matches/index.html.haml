@@ -1,0 +1,6 @@
+%h1 Matches#index
+%p Find me in app/views/matches/index.html.haml
+
+-@matches.each do |match|
+  .match
+    =link_to "Match ##{match.id}", match_path(match)
