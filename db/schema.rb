@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20150930081358) do
   create_table "games", force: :cascade do |t|
     t.boolean  "ended"
     t.integer  "match_id"
-    t.integer  "home_score"
-    t.integer  "away_score"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "home_score", default: 0
+    t.integer  "away_score", default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "games", ["match_id"], name: "index_games_on_match_id"

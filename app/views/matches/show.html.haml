@@ -15,7 +15,7 @@
 %hr
 %h2
   AWAY TEAM: #{@away.team_name}
-  =link_to "Rename", add_member_match_team_path(@match, @home.id)
+  =link_to "Rename", edit_match_team_path(@match, @away.id)
   %br
 
   -@away.memberships.each do |mem|
@@ -26,6 +26,17 @@
     =link_to "Add players", add_member_match_team_path(@match, @away.id)
 
 %hr
-= link_to "START A GAME"
+
+-@match.games.each do |game|
+  %h2=link_to "GAME #{game.id}", match_game_path(@match, game)
+
+%br
+%br
+-if @match.games.empty? || @match.games.last.ended?
+  = link_to "START A GAME", match_games_path(@match), method: :post
+-else
+  %h3 There is a game already happening
+
+%br
 %br
   =link_to "Go back to all matches", matches_path

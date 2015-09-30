@@ -1,2 +1,22 @@
-%h1 Games#show
-%p Find me in app/views/games/show.html.haml
+%h1 GAME
+
+%h2
+  HOME:
+  =@home.team_name
+
+.score
+  %h1
+    =@game.home_score
+    =link_to " SCORE!!"
+
+%h2
+  AWAY:
+  =@away.team_name
+
+.score
+  %h1
+    =@game.away_score
+    =link_to " SCORE!!"
+
+%br
+  = link_to "Go back to match board", match_path(@match)
