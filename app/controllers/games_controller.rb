@@ -37,8 +37,4 @@ class GamesController < ApplicationController
     @match = Match.find(params[:match_id])
     @game = Game.find(params[:id])
   end
-
-  def ends_game
-
-  end
 end

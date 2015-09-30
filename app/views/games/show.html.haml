@@ -1,26 +1,33 @@
-%h1 GAME
--if @game.ended?
-  %h2 THE ROUND HAS ENDED
-  %h2 WINNER: #{@game.winner_name.upcase}
-
-%h2
-  HOME: #{@home.team_name}
-
-.score
-  %h1
-    =@game.home_score
+.row
+  .col-md-12.game-show
+    %h1 GAME
+    -if @game.ended?
+      %h1 THE ROUND HAS ENDED
+      %h2 WINNER: #{@game.winner_name.upcase}
+  .col-md-6.game-show
+    %h2
+      HOME:
+    %h1.team-name
+      =@home.team_name
+    .score
+      %h1.score-text
+        =@game.home_score
     -if !@game.ended?
-      =link_to " SCORE!!", add_home_match_game_path(@match, @game)
+      =link_to "+", add_home_match_game_path(@match, @game), class: "btn btn-default"
 
-%h2
-  AWAY:
-  =@away.team_name
 
-.score
-  %h1
-    =@game.away_score
+  .col-md-6.game-show
+    %h2
+      AWAY
+    %h1.team-name
+      =@away.team_name
+    .score
+      %h1.score-text
+        =@game.away_score
     -if !@game.ended?
-      =link_to " SCORE!!", add_away_match_game_path(@match, @game)
+      =link_to "+", add_away_match_game_path(@match, @game), class: "btn btn-default"
+
+
 
 %br
   = link_to "Go back to match board", match_path(@match)

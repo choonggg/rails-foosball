@@ -3,16 +3,16 @@
     %h1 Match ##{@match.id}
   .col-md-6
     %h4
-      HOME TEAM:
-    %h1
+      HOME TEAM
+    %h1.team-name
       #{@home.team_name}
       %span.match-rename
         = link_to "Rename", edit_match_team_path(@match, @home.id), class: "label label-default"
     %hr
   .col-md-6
     %h4
-      AWAY TEAM:
-    %h1
+      AWAY TEAM
+    %h1.team-name
       #{@away.team_name}
       %spam.match-rename
         =link_to "Rename", edit_match_team_path(@match, @away.id), class: "label label-default"
@@ -46,18 +46,20 @@
     -gameno = 1
 
     -@match.games.each do |game|
-      %h2=link_to "GAME ##{gameno}", match_game_path(@match, game)
-      -if game.ended?
-        %p Game ended with the winner #{game.winner_name}
-        .col-md-6
-          %h1 #{game.home_score}
-        .col-md-6
-          %h1 #{game.away_score}
-      -else
-        %p Game is still going on
-      -gameno += 1
+      .each-match.clearfix
+        %h2=link_to "GAME ##{gameno}", match_game_path(@match, game)
+        -if game.ended?
+          %p Game ended with the winner #{game.winner_name}
+          .col-md-6
+            %h1 #{game.home_score}
+          .col-md-6
+            %h1 #{game.away_score}
+        -else
+          %p Game is still going on
+        -gameno += 1
 
     -if @match.games.empty? || @match.games.last.ended?
       = link_to "START A GAME", match_games_path(@match), method: :post, class: "btn btn-default"
+
 
     =link_to "Go back to all matches", matches_path, class: "btn btn-default"

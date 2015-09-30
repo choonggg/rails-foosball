@@ -1,6 +1,8 @@
-%h1 Users#index
-
-- @users.each do |user|
-  %p= user.display_name
-
-=link_to "Add Player", new_user_path
+.row
+  .col-md-12.users-index
+    =link_to "Add Player", new_user_path, class: "btn btn-default"
+    .row
+      .col-md-8.col-md-offset-2
+        - @users.each do |user|
+          %p= user.display_name
+          %hr
