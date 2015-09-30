@@ -1,0 +1,7 @@
+%h1 Change your team name > #{@team.team_name}
+
+=simple_form_for [@match, @team] do |f|
+  =f.input :team_name
+
+  =f.submit
+-

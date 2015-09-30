@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
+
+  get 'memberships/destroy'
+
   root to: "matches#index"
   resources :users
+
   resources :matches do
-    resources :teams
+    resources :teams do
+      resources :memberships, only: :destroy
+      member do
+        get 'add_member'
+      end
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

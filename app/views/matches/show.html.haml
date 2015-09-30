@@ -1,2 +1,31 @@
-%h1 Matches#show
-%p Find me in app/views/matches/show.html.haml
+%h1 Match ##{@match.id}
+%hr
+%h2
+  HOME TEAM: #{@home.team_name}
+  = link_to "Rename", edit_match_team_path(@match, @home.id)
+  %br
+
+  -@home.memberships.each do |mem|
+    %p
+      =mem.user.display_name
+      =link_to "Remove Member", match_team_membership_path(@match, @home, mem), method: :delete
+
+  - if @home.memberships.length < 2
+    = link_to "Add players", add_member_match_team_path(@match, @home.id)
+%hr
+%h2
+  AWAY TEAM: #{@away.team_name}
+  =link_to "Rename", add_member_match_team_path(@match, @home.id)
+  %br
+
+  -@away.memberships.each do |mem|
+    %p
+      =mem.user.display_name
+      =link_to "Remove Member", match_team_membership_path(@match, @home, mem), method: :delete
+  - if @away.memberships.length < 2
+    =link_to "Add players", add_member_match_team_path(@match, @away.id)
+
+%hr
+= link_to "START A GAME"
+%br
+  =link_to "Go back to all matches", matches_path

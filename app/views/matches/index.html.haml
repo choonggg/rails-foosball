@@ -3,4 +3,11 @@
 
 -@matches.each do |match|
   .match
-    =link_to "Match ##{match.id}", match_path(match)
+    %h2
+      =link_to "Match ##{match.id}", match_path(match)
+
+=link_to "Start New Match", new_match_path
+%br
+=link_to "Register Players", new_user_path
+%br
+=link_to "View Players", users_path

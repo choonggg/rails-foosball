@@ -4,6 +4,9 @@ class MatchesController < ApplicationController
   end
 
   def show
+    @match = Match.find(params[:id])
+    @home = Team.find(@match.home_team_id)
+    @away = Team.find(@match.away_team_id)
   end
 
   def new

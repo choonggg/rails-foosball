@@ -10,12 +10,12 @@ gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem "haml-rails", "~> 0.9"
 gem 'simple_form', '~> 3.2.0'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'shoulda-matchers'
   gem 'sqlite3'
   gem 'byebug'
   gem 'better_errors', '~> 2.1.1'
