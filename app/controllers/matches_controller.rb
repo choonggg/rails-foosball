@@ -33,4 +33,8 @@ class MatchesController < ApplicationController
   def matches_param
     params.require(:match).permit(:home_team_id, :away_team_id, teams_attributes: [:team_name])
   end
+
+  def determine_winner
+
+  end
 end
