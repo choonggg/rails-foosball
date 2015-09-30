@@ -27,8 +27,13 @@
 
 %hr
 
+-gameno = 1
+
 -@match.games.each do |game|
-  %h2=link_to "GAME #{game.id}", match_game_path(@match, game)
+  %h2=link_to "GAME ##{gameno}", match_game_path(@match, game)
+  -if game.ended?
+    %p Game ended with the winner #{game.winner_name}
+  -gameno += 1
 
 %br
 %br

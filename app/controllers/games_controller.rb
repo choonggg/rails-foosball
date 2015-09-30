@@ -3,9 +3,6 @@ class GamesController < ApplicationController
   def show
     @home = Team.find_by(id: @match.home_team_id)
     @away = Team.find_by(id: @match.away_team_id)
-    if @game.ended?
-
-    end
   end
 
   def create
@@ -16,8 +13,9 @@ class GamesController < ApplicationController
 
   def add_home
     @game.increment!(:home_score)
+    @home = Team.find_by(id: @match.home_team_id)
     if @game.home_score == 10
-      @game.update_attribute(:ended, true)
+      @game.update_attributes(ended: true, winner_id: @home.id, winner_name: @home.team_name)
       redirect_to match_path(@match)
     else
       redirect_to match_game_path(@match, @game)
@@ -26,8 +24,9 @@ class GamesController < ApplicationController
 
   def add_away
     @game.increment!(:away_score)
+    @away = Team.find_by(id: @match.away_team_id)
     if @game.away_score == 10
-      @game.update_attribute(:ended, true)
+      @game.update_attributes(ended: true, winner_id: @away.id, winner_name: @away.team_name)
       redirect_to match_path(@match)
     else
       redirect_to match_game_path(@match, @game)
