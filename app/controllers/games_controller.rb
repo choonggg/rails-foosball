@@ -13,4 +13,18 @@ class GamesController < ApplicationController
       redirect_to match_game_path(@match, @game)
     end
   end
+
+  def add_home
+    @match = Match.find(params[:match_id])
+    @game = Game.find(params[:id])
+    @game.increment!(:home_score)
+    redirect_to match_game_path(@match, @game)
+  end
+
+  def add_away
+    @match = Match.find(params[:match_id])
+    @game = Game.find(params[:id])
+    @game.increment!(:away_score)
+    redirect_to match_game_path(@match, @game)
+  end
 end

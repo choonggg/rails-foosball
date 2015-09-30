@@ -10,7 +10,12 @@ Rails.application.routes.draw do
       resources :memberships, only: :destroy
     end
 
-    resources :games, only: [ :show, :create ]
+    resources :games, only: [ :show, :create ] do
+      member do
+        get 'add_home'
+        get 'add_away'
+      end
+    end
   end
 
 end
