@@ -1,0 +1,8 @@
+%h1 Teams #{@team.team_name}
+
+=simple_form_for [@match, @team] do |f|
+  =f.simple_fields_for :memberships, @team.memberships.build do |memb|
+    =memb.association :user , label_method: :display_name, value_method: :id,  prompt: "Choose a User"
+
+  =f.submit
+-
