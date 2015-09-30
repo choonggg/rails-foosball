@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       end
       resources :memberships, only: :destroy
     end
+    
+    resources :games
   end
 
 end
