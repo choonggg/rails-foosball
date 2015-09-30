@@ -1,0 +1,10 @@
+%nav.navbar.navbar-default.navbar-static-top
+  .container
+    .navbar-header
+      =link_to "Foosball", root_path, class: "navbar-brand"
+    .navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          =link_to "Players", users_path
+        %li
+          =link_to "View Matches", matches_path

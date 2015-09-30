@@ -1,3 +1,17 @@
-// Place all the styles related to the matches controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+span.label-ongoing {
+  font-size: 1.5rem;
+  position: relative;
+  bottom: 7px;
+}
+
+.match-rename {
+  font-size: 1.5rem;
+}
+
+.match-scoring {
+  text-align: center;
+  h1 {
+    font-size: 9rem;
+
+  }
+}

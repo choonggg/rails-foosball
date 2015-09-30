@@ -1,9 +1,13 @@
-%h1 Matches#new
-%p Find me in app/views/matches/new.html.haml
+.row
+  .col-md-10.col-md-offset-1
+    %h1 Start a match
 
-=simple_form_for @match do |f|
-  =f.simple_fields_for :home_team do |hteam|
-    =hteam.input :team_name
-  =f.simple_fields_for :away_team do |ateam|
-    =ateam.input :team_name
-  =f.submit
+    =simple_form_for @match do |f|
+      .col-md-4
+        =f.simple_fields_for :home_team do |hteam|
+          =hteam.input :team_name, label: "Home Team"
+      .col-md-4.col-md-offset-2
+        =f.simple_fields_for :away_team do |ateam|
+          =ateam.input :team_name, label: "Away Team"
+      .col-md-10
+        =f.button :submit, class: "btn btn-default"

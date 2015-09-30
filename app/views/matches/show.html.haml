@@ -1,47 +1,63 @@
-%h1 Match ##{@match.id}
-%hr
-%h2
-  HOME TEAM: #{@home.team_name}
-  = link_to "Rename", edit_match_team_path(@match, @home.id)
-  %br
+.row
+  .col-md-12
+    %h1 Match ##{@match.id}
+  .col-md-6
+    %h4
+      HOME TEAM:
+    %h1
+      #{@home.team_name}
+      %span.match-rename
+        = link_to "Rename", edit_match_team_path(@match, @home.id), class: "label label-default"
+    %hr
+  .col-md-6
+    %h4
+      AWAY TEAM:
+    %h1
+      #{@away.team_name}
+      %spam.match-rename
+        =link_to "Rename", edit_match_team_path(@match, @away.id), class: "label label-default"
+    %hr
 
-  -@home.memberships.each do |mem|
-    %p
-      =mem.user.display_name
-      =link_to "Remove Member", match_team_membership_path(@match, @home, mem), method: :delete
+.row
+  .col-md-6
+    %ul
+      -@home.memberships.each do |mem|
+        %li
+          =mem.user.display_name
+          %span
+            =link_to "Remove Member", match_team_membership_path(@match, @home, mem), method: :delete, class: "label label-warning"
+    - if @home.memberships.length < 2
+      = link_to "Add players", add_member_match_team_path(@match, @home.id)
+    %hr
 
-  - if @home.memberships.length < 2
-    = link_to "Add players", add_member_match_team_path(@match, @home.id)
-%hr
-%h2
-  AWAY TEAM: #{@away.team_name}
-  =link_to "Rename", edit_match_team_path(@match, @away.id)
-  %br
+  .col-md-6
+    %ul
+      -@away.memberships.each do |mem|
+        %li
+          =mem.user.display_name
+          %span
+            =link_to "Remove Member", match_team_membership_path(@match, @home, mem), method: :delete, class: "label label-warning"
+    - if @away.memberships.length < 2
+      =link_to "Add players", add_member_match_team_path(@match, @away.id)
+    %hr
 
-  -@away.memberships.each do |mem|
-    %p
-      =mem.user.display_name
-      =link_to "Remove Member", match_team_membership_path(@match, @home, mem), method: :delete
-  - if @away.memberships.length < 2
-    =link_to "Add players", add_member_match_team_path(@match, @away.id)
+.row
+  .col-md-12.match-scoring
+    -gameno = 1
 
-%hr
+    -@match.games.each do |game|
+      %h2=link_to "GAME ##{gameno}", match_game_path(@match, game)
+      -if game.ended?
+        %p Game ended with the winner #{game.winner_name}
+        .col-md-6
+          %h1 #{game.home_score}
+        .col-md-6
+          %h1 #{game.away_score}
+      -else
+        %p Game is still going on
+      -gameno += 1
 
--gameno = 1
+    -if @match.games.empty? || @match.games.last.ended?
+      = link_to "START A GAME", match_games_path(@match), method: :post, class: "btn btn-default"
 
--@match.games.each do |game|
-  %h2=link_to "GAME ##{gameno}", match_game_path(@match, game)
-  -if game.ended?
-    %p Game ended with the winner #{game.winner_name}
-  -gameno += 1
-
-%br
-%br
--if @match.games.empty? || @match.games.last.ended?
-  = link_to "START A GAME", match_games_path(@match), method: :post
--else
-  %h3 There is a game already happening
-
-%br
-%br
-  =link_to "Go back to all matches", matches_path
+    =link_to "Go back to all matches", matches_path, class: "btn btn-default"

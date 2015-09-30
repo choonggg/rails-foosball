@@ -1,13 +1,14 @@
-%h1 Matches#index
-%p Find me in app/views/matches/index.html.haml
-
+.navbar.navbar-default
+  %ul.navbar-nav.nav
+    %li
+      =link_to "Start New Match", new_match_path
+    %li
+      =link_to "Register Players", new_user_path
+    %li
+      =link_to "View Players", users_path
 -@matches.each do |match|
   .match
-    %h2
+    %h1
       =link_to "Match ##{match.id}", match_path(match)
-
-=link_to "Start New Match", new_match_path
-%br
-=link_to "Register Players", new_user_path
-%br
-=link_to "View Players", users_path
+      -if match.winner_id.nil?
+        %span.label.label-default.label-ongoing On Going
